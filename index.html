@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NagishoArts | Nagisho Lapist Emikos Official Site</title>
+  <meta name="description" content="NagishoArts - 凪書（なぎしょ）ラピスト Emikosの公式サイト。心を凪にし、夢を叶える筆文字の世界。メキシコ・ジャパンエキスポ 2026出展。">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Noto+Serif+JP:wght@700;900&family=Outfit:wght@300;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ---------------------------------------------------------
+       CSS DESIGN SYSTEM (Step 2)
+       --------------------------------------------------------- */
+    :root {
+      --color-sea-deep: #004d4d;
+      --color-nagi-teal: #1a938b;
+      --color-nagi-light: #e0f2f1;
+      --color-nagi-blue: #b2ebf2;
+      --color-accent: #ff8a65;
+      --color-text: #263238;
+      --color-white: #ffffff;
+      --font-main: 'Outfit', 'Inter', sans-serif;
+      --font-calligraphy: 'Noto Serif JP', serif;
+      --transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: var(--font-main);
+      color: var(--color-text);
+      line-height: 1.6;
+      background: linear-gradient(135deg, var(--color-white) 0%, var(--color-nagi-light) 100%);
+      overflow-x: hidden;
+    }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 5%; }
+    header { position: fixed; width: 100%; top: 0; z-index: 1000; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); }
+    .nav-container { display: flex; justify-content: space-between; align-items: center; height: 80px; }
+    .logo { font-size: 1.6rem; font-weight: 800; color: var(--color-sea-deep); letter-spacing: -1px; }
+
+    /* Lang Toggle */
+    .lang-toggle { display: flex; gap: 8px; }
+    .lang-btn {
+      padding: 6px 14px; border: 1px solid var(--color-nagi-teal); border-radius: 20px;
+      background: var(--color-white); color: var(--color-nagi-teal); cursor: pointer;
+      font-weight: 600; transition: var(--transition); font-size: 0.85rem;
+    }
+    .lang-btn.active { background: var(--color-nagi-teal); color: var(--color-white); }
+
+    /* Sections */
+    section { padding: 120px 0; }
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 1.2s, transform 1.2s; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+
+    /* Hero */
+    .hero { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 60px; min-height: 100vh; }
+    .main-catch { font-family: var(--font-calligraphy); font-size: 3.5rem; line-height: 1.2; margin-bottom: 24px; color: var(--color-sea-deep); }
+    .hero-sub { font-size: 1.2rem; margin-bottom: 40px; opacity: 0.8; }
+    .hero-img { width: 100%; border-radius: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+
+    /* Portfolio Grid */
+    .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; align-items: start; }
+    .portfolio-item { position: relative; overflow: hidden; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+    .portfolio-item img { width: 100%; height: auto; display: block; transition: transform 0.8s; }
+    .portfolio-item:hover img { transform: scale(1.05); }
+
+    /* Expo / Countdown */
+    .expo-card {
+      background: var(--color-white); padding: 60px; border-radius: 32px; text-align: center;
+      box-shadow: 0 30px 60px rgba(26, 147, 139, 0.1); border: 1px solid var(--color-nagi-blue);
+    }
+    .countdown { display: flex; justify-content: center; gap: 24px; margin: 40px 0; }
+    .cd-item { display: flex; flex-direction: column; align-items: center; }
+    .cd-num { font-size: 2.5rem; font-weight: 800; color: var(--color-accent); }
+    .cd-label { font-size: 0.8rem; text-transform: uppercase; opacity: 0.6; }
+
+    footer { text-align: center; padding: 60px 0; opacity: 0.5; font-size: 0.9rem; }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: 1fr; text-align: center; padding-top: 100px; }
+      .main-catch { font-size: 2.4rem; }
+      .countdown { gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container nav-container">
+      <div class="logo">NagishoArts</div>
+      <div class="lang-toggle">
+        <button class="lang-btn active" onclick="setLang('jp')">JP</button>
+        <button class="lang-btn" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('es')">ES</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero (Step 1) -->
+  <section class="hero container">
+    <div class="hero-text reveal">
+      <h1 class="main-catch" data-t="hero-catch">半径３メートルを幸せにする筆文字</h1>
+      <p class="hero-sub" data-t="hero-sub">心を凪に。夢を叶える、凪書の世界へ。</p>
+      <a href="#portfolio" class="lang-btn" style="padding:15px 30px;" data-t="hero-btn">View Works</a>
+    </div>
+    <div class="hero-visual reveal">
+      <img src="assets/works/hero.jpg" alt="Nagisho" class="hero-img">
+    </div>
+  </section>
+
+  <!-- Message Section -->
+  <section class="container reveal">
+    <h2 style="margin-bottom:30px;" data-t="about-title">夢を叶えるツールとしての筆文字</h2>
+    <p style="max-width:700px;" data-t="about-desc">「ただの趣味」が、夢を叶えるツールになった。個展の開催、海外遠征。筆文字のおかげで、なりたかった自分を叶えてきました。心を整え、幸せを広げていきませんか。</p>
+  </section>
+
+  <!-- Portfolio -->
+  <section id="portfolio" class="container reveal">
+    <h2 style="text-align:center; margin-bottom:60px;" data-t="port-title">Portfolio</h2>
+    <div class="portfolio-grid">
+      <div class="portfolio-item"><img src="assets/works/work1.jpg" alt="Work 1"></div>
+      <div class="portfolio-item"><img src="assets/works/work2.jpg" alt="Work 2"></div>
+      <div class="portfolio-item"><img src="assets/works/work3.jpg" alt="Work 3"></div>
+    </div>
+  </section>
+
+  <!-- Expo / Countdown (Step 3) -->
+  <section id="expo" class="container reveal">
+    <div class="expo-card">
+      <h2 data-t="expo-title">Mexico Japan Expo 2026</h2>
+      <p data-t="expo-desc">2026年5月29〜30日、メキシコのレオンにて。世界へ筆文字を届けます。</p>
+      
+      <div class="countdown">
+        <div class="cd-item"><span class="cd-num" id="days">00</span><span class="cd-label">Days</span></div>
+        <div class="cd-item"><span class="cd-num" id="hours">00</span><span class="cd-label">Hours</span></div>
+        <div class="cd-item"><span class="cd-num" id="mins">00</span><span class="cd-label">Mins</span></div>
+      </div>
+      
+      <p style="opacity:0.6;" data-t="expo-sub">See you in Mexico!</p>
+    </div>
+  </section>
+
+  <footer class="container">
+    <p>&copy; 2026 NagishoArts | Nagisho Lapist Emikos.</p>
+  </footer>
+
+  <script>
+    /* ---------------------------------------------------------
+       JS LOGIC (Step 1 & 3)
+       --------------------------------------------------------- */
+    const translations = {
+      jp: {
+        "hero-catch": "半径３メートルを幸せにする筆文字",
+        "hero-sub": "心を凪に。夢を叶える、凪書の世界へ。",
+        "hero-btn": "作品を見る",
+        "about-title": "夢を叶えるツールとしての筆文字",
+        "about-desc": "「ただの趣味」が、夢を叶えるツールになった。個展の開催、海外遠征。筆文字のおかげで、なりたかった自分を次々と叶えてきました。心を凪にし、整えることで、あなたの半径３メートルから幸せを広げていきませんか。",
+        "port-title": "作品ギャラリー",
+        "expo-title": "Mexico Japan Expo 2026",
+        "expo-desc": "2026年5月29〜30日、メキシコのレオンにて開催されるジャパンエキスポに出展します。",
+        "expo-sub": "メキシコでお会いしましょう！"
+      },
+      en: {
+        "hero-catch": "Calligraphy that makes 3 meters around you happy",
+        "hero-sub": "Calm your heart. Welcome to the Nagisho world where dreams come true.",
+        "hero-btn": "View Works",
+        "about-title": "Calligraphy as a Dream-Fulfilling Tool",
+        "about-desc": "\"Just a hobby\" became a tool to fulfill my dreams. Exhibitions, overseas expeditions. Calligraphy helped me become who I wanted to be. Let's find peace and spread happiness together.",
+        "port-title": "Portfolio Gallery",
+        "expo-title": "Mexico Japan Expo 2026",
+        "expo-desc": "Exhibiting at Japan Expo in Leon, Mexico, May 29-30, 2026.",
+        "expo-sub": "See you in Mexico!"
+      },
+      es: {
+        "hero-catch": "Caligrafía que hace feliz a 3 metros a tu alrededor",
+        "hero-sub": "Calma tu corazón. Bienvenido al mundo de Nagisho donde los sueños se cumplen.",
+        "hero-btn": "Ver Obras",
+        "about-title": "La caligrafía como herramienta para cumplir sueños",
+        "about-desc": "Lo que era solo un pasatiempo se convirtió en una herramienta para mis sueños. Gracias a la caligrafía, logré ser quien quería ser. Calma tu corazón y difunde la felicidad.",
+        "port-title": "Portafolio",
+        "expo-title": "Expo Japón México 2026",
+        "expo-desc": "Exhibiendo en la Japan Expo en León, México, 29-30 de mayo de 2026.",
+        "expo-sub": "¡Nos vemos en México!"
+      }
+    };
+
+    function setLang(lang) {
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.innerText.toLowerCase() === lang));
+      document.querySelectorAll('[data-t]').forEach(el => {
+        const key = el.getAttribute('data-t');
+        if (translations[lang][key]) el.innerText = translations[lang][key];
+      });
+    }
+
+    // Countdown Logic (Step 3)
+    function updateCountdown() {
+      const expoDate = new Date("May 29, 2026 00:00:00").getTime();
+      const now = new Date().getTime();
+      const diff = expoDate - now;
+      if (diff > 0) {
+        document.getElementById("days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
+        document.getElementById("hours").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
+        document.getElementById("mins").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+      }
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // Scroll Reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
