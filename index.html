@@ -13,135 +13,216 @@
 
   <style>
     /* ---------------------------------------------------------
-       CSS DESIGN SYSTEM (Step 2)
+       PREMIUM DESIGN SYSTEM (Nagisho Nagi-style)
        --------------------------------------------------------- */
     :root {
-      --color-sea-deep: #004d4d;
+      --color-sea-deep: #052c2c;
       --color-nagi-teal: #1a938b;
+      --color-nagi-soft: #f0f7f7;
       --color-nagi-light: #e0f2f1;
-      --color-nagi-blue: #b2ebf2;
-      --color-accent: #ff8a65;
-      --color-text: #263238;
+      --color-accent: #ff7043;
+      --color-text-main: #2c3e50;
+      --color-text-sub: #546e7a;
       --color-white: #ffffff;
+      --glass-bg: rgba(255, 255, 255, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.2);
       --font-main: 'Outfit', 'Inter', sans-serif;
-      --font-calligraphy: 'Noto Serif JP', serif;
-      --transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+      --font-jp: 'Noto Serif JP', serif;
+      --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       font-family: var(--font-main);
-      color: var(--color-text);
-      line-height: 1.6;
-      background: linear-gradient(135deg, var(--color-white) 0%, var(--color-nagi-light) 100%);
+      color: var(--color-text-main);
+      line-height: 1.8;
+      background: linear-gradient(135deg, var(--color-white) 0%, var(--color-nagi-soft) 100%);
       overflow-x: hidden;
+      word-break: break-all;
     }
 
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 5%; }
-    header { position: fixed; width: 100%; top: 0; z-index: 1000; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); }
-    .nav-container { display: flex; justify-content: space-between; align-items: center; height: 80px; }
-    .logo { font-size: 1.6rem; font-weight: 800; color: var(--color-sea-deep); letter-spacing: -1px; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+    
+    /* Header & Navigation */
+    header {
+      position: fixed; width: 100%; top: 0; z-index: 1000;
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border-bottom: 1px solid var(--glass-border);
+      transition: var(--transition);
+    }
+    .nav-container { display: flex; justify-content: space-between; align-items: center; height: 90px; }
+    .logo { 
+      font-size: 1.8rem; font-weight: 800; color: var(--color-sea-deep); 
+      letter-spacing: -1.5px; text-decoration: none;
+    }
 
-    /* Lang Toggle */
-    .lang-toggle { display: flex; gap: 8px; }
+    /* Interactive Buttons */
+    .btn-group { display: flex; gap: 1rem; align-items: center; }
+    .lang-toggle { display: flex; gap: 0.5rem; background: rgba(0,0,0,0.03); padding: 5px; border-radius: 30px; }
     .lang-btn {
-      padding: 6px 14px; border: 1px solid var(--color-nagi-teal); border-radius: 20px;
-      background: var(--color-white); color: var(--color-nagi-teal); cursor: pointer;
-      font-weight: 600; transition: var(--transition); font-size: 0.85rem;
+      padding: 6px 16px; border: none; border-radius: 20px;
+      background: transparent; color: var(--color-text-sub); cursor: pointer;
+      font-weight: 600; font-size: 0.8rem; transition: var(--transition);
     }
-    .lang-btn.active { background: var(--color-nagi-teal); color: var(--color-white); }
+    .lang-btn.active { background: var(--color-white); color: var(--color-nagi-teal); box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+    
+    .cta-btn {
+      padding: 14px 28px; border-radius: 50px; text-decoration: none;
+      font-weight: 600; font-size: 0.95rem; transition: var(--transition);
+      display: inline-block;
+    }
+    .btn-primary { background: var(--color-nagi-teal); color: var(--color-white); box-shadow: 0 8px 20px rgba(26, 147, 139, 0.2); }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 25px rgba(26, 147, 139, 0.3); }
+    .btn-outline { border: 1.5px solid var(--color-nagi-teal); color: var(--color-nagi-teal); }
+    .btn-outline:hover { background: var(--color-nagi-teal); color: var(--color-white); }
 
-    /* Sections */
-    section { padding: 120px 0; }
-    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 1.2s, transform 1.2s; }
+    /* Layout Sections */
+    section { padding: 100px 0; }
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity 1s, transform 1s; }
     .reveal.active { opacity: 1; transform: translateY(0); }
 
-    /* Hero */
-    .hero { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 60px; min-height: 100vh; }
-    .main-catch { font-family: var(--font-calligraphy); font-size: 3.5rem; line-height: 1.2; margin-bottom: 24px; color: var(--color-sea-deep); }
-    .hero-sub { font-size: 1.2rem; margin-bottom: 40px; opacity: 0.8; }
-    .hero-img { width: 100%; border-radius: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+    /* Hero Section */
+    .hero { min-height: 100vh; display: grid; grid-template-columns: 1.2fr 0.8fr; align-items: center; gap: 4rem; padding-top: 120px; }
+    .hero-text h1 { 
+      font-family: var(--font-jp); font-size: 4rem; line-height: 1.15; 
+      margin-bottom: 1.5rem; color: var(--color-sea-deep); letter-spacing: -1px;
+    }
+    .hero-sub { font-size: 1.25rem; color: var(--color-text-sub); margin-bottom: 2.5rem; max-width: 500px; }
+    .hero-visual { position: relative; }
+    .hero-img { 
+      width: 100%; border-radius: 2rem; box-shadow: 0 30px 60px rgba(0,0,0,0.12); 
+      transition: var(--transition); object-fit: cover; aspect-ratio: 4/5;
+    }
+    .hero-visual::after {
+      content: ''; position: absolute; top: -20px; right: -20px; width: 100px; height: 100px;
+      background: var(--color-nagi-light); border-radius: 50%; z-index: -1;
+    }
+
+    /* Profile Section */
+    .profile-wrap { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 4rem; align-items: center; }
+    .profile-img { width: 100%; border-radius: 2rem; box-shadow: var(--shadow); filter: grayscale(15%); }
+    .profile-text h2 { font-family: var(--font-jp); font-size: 2.2rem; margin-bottom: 1.5rem; }
 
     /* Portfolio Grid */
-    .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; align-items: start; }
-    .portfolio-item { position: relative; overflow: hidden; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-    .portfolio-item img { width: 100%; height: auto; display: block; transition: transform 0.8s; }
-    .portfolio-item:hover img { transform: scale(1.05); }
-
-    /* Expo / Countdown */
-    .expo-card {
-      background: var(--color-white); padding: 60px; border-radius: 32px; text-align: center;
-      box-shadow: 0 30px 60px rgba(26, 147, 139, 0.1); border: 1px solid var(--color-nagi-blue);
+    .section-title { text-align: center; margin-bottom: 4rem; }
+    .section-title h2 { font-family: var(--font-jp); font-size: 2.5rem; margin-bottom: 1rem; }
+    .port-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
+    .port-item { 
+      position: relative; overflow: hidden; border-radius: 1.5rem; 
+      aspect-ratio: 1; box-shadow: var(--shadow); background: var(--color-nagi-soft);
     }
-    .countdown { display: flex; justify-content: center; gap: 24px; margin: 40px 0; }
+    .port-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s; }
+    .port-item:hover img { transform: scale(1.08); }
+
+    /* Expo & Countdown */
+    .expo-card {
+      background: var(--color-white); padding: 5rem 3rem; border-radius: 3rem;
+      text-align: center; box-shadow: 0 40px 80px rgba(0,0,0,0.06);
+      border: 1px solid var(--color-nagi-light); position: relative; overflow: hidden;
+    }
+    .expo-card::before {
+      content: 'Nagi'; position: absolute; top: -20px; left: -20px; font-size: 10rem;
+      font-weight: 900; color: var(--color-nagi-soft); z-index: 0; opacity: 0.5;
+    }
+    .expo-content { position: relative; z-index: 1; }
+    .countdown { display: flex; justify-content: center; gap: 2.5rem; margin: 3rem 0; }
     .cd-item { display: flex; flex-direction: column; align-items: center; }
-    .cd-num { font-size: 2.5rem; font-weight: 800; color: var(--color-accent); }
-    .cd-label { font-size: 0.8rem; text-transform: uppercase; opacity: 0.6; }
+    .cd-num { font-size: 3.5rem; font-weight: 800; color: var(--color-accent); line-height: 1; }
+    .cd-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; opacity: 0.5; margin-top: 0.5rem; }
 
-    footer { text-align: center; padding: 60px 0; opacity: 0.5; font-size: 0.9rem; }
+    footer { text-align: center; padding: 4rem 0; opacity: 0.4; font-size: 0.85rem; }
 
-    /* Mobile */
-    @media (max-width: 768px) {
-      .hero { grid-template-columns: 1fr; text-align: center; padding-top: 100px; }
-      .main-catch { font-size: 2.4rem; }
-      .countdown { gap: 12px; }
+    /* Mobile Responsive */
+    @media (max-width: 900px) {
+      .hero, .profile-wrap { grid-template-columns: 1fr; gap: 3rem; text-align: center; }
+      .hero-text h1 { font-size: 2.8rem; }
+      .hero-sub { margin-left: auto; margin-right: auto; }
+      .hero-visual::after { display: none; }
+      .btn-group { justify-content: center; flex-wrap: wrap; }
+      .hero-btns { flex-direction: column; width: 100%; max-width: 300px; margin: 0 auto; }
+      .cta-btn { width: 100%; }
     }
   </style>
+
 </head>
 <body>
 
   <header>
     <div class="container nav-container">
-      <div class="logo">NagishoArts</div>
-      <div class="lang-toggle">
-        <button class="lang-btn active" onclick="setLang('jp')">JP</button>
-        <button class="lang-btn" onclick="setLang('en')">EN</button>
-        <button class="lang-btn" onclick="setLang('es')">ES</button>
+      <a href="#" class="logo">NagishoArts</a>
+      <div class="btn-group">
+        <div class="lang-toggle">
+          <button class="lang-btn active" onclick="setLang('jp')">JP</button>
+          <button class="lang-btn" onclick="setLang('en')">EN</button>
+          <button class="lang-btn" onclick="setLang('es')">ES</button>
+        </div>
+        <div style="display:flex; gap:0.5rem;">
+          <a href="https://line.me/R/ti/p/@YOUR_ID" target="_blank" class="lang-btn" style="padding:0; width:40px; height:40px; display:flex; align-items:center; justify-content:center; border-radius:50%; background:rgba(0,185,0,0.1); text-decoration:none; color:#00b900; font-weight:800; border:1px solid #00b900;">L</a>
+          <a href="https://www.threads.net/" target="_blank" class="lang-btn" style="padding:0; width:40px; height:40px; display:flex; align-items:center; justify-content:center; border-radius:50%; background:rgba(0,0,0,0.05); text-decoration:none; color:inherit;">T</a>
+          <a href="https://www.instagram.com/" target="_blank" class="lang-btn" style="padding:0; width:40px; height:40px; display:flex; align-items:center; justify-content:center; border-radius:50%; background:rgba(0,0,0,0.05); text-decoration:none; color:inherit;">I</a>
+        </div>
       </div>
     </div>
   </header>
 
-  <!-- Hero (Step 1) -->
+  <!-- Hero Section -->
   <section class="hero container">
     <div class="hero-text reveal">
-      <h1 class="main-catch" data-t="hero-catch">半径３メートルを幸せにする筆文字</h1>
+      <h1 data-t="hero-catch">半径３メートルを幸せにする筆文字</h1>
       <p class="hero-sub" data-t="hero-sub">心を凪に。夢を叶える、凪書の世界へ。</p>
-      <a href="#portfolio" class="lang-btn" style="padding:15px 30px;" data-t="hero-btn">View Works</a>
+      <div class="btn-group hero-btns">
+        <a href="#portfolio" class="cta-btn btn-primary" data-t="hero-btn">View Works</a>
+        <a href="https://line.me/R/ti/p/@YOUR_ID" target="_blank" class="cta-btn btn-outline" data-t="cta-btn">LINEで問い合わせ</a>
+      </div>
     </div>
     <div class="hero-visual reveal">
-      <img src="assets/works/hero.jpg" alt="Nagisho" class="hero-img">
+      <img src="assets/works/hero.jpg" alt="Nagisho Art - Nagi" class="hero-img">
     </div>
   </section>
 
-  <!-- Message Section -->
+  <!-- Profile Section (Bio) -->
   <section class="container reveal">
-    <h2 style="margin-bottom:30px;" data-t="about-title">夢を叶えるツールとしての筆文字</h2>
-    <p style="max-width:700px;" data-t="about-desc">「ただの趣味」が、夢を叶えるツールになった。個展の開催、海外遠征。筆文字のおかげで、なりたかった自分を叶えてきました。心を整え、幸せを広げていきませんか。</p>
+    <div class="profile-wrap">
+      <img src="assets/works/emikos.png" alt="Nagisho Lapist Emikos" class="profile-img">
+      <div class="profile-text">
+        <h2 data-t="bio-title">凪書ラピスト Emikos</h2>
+        <p data-t="bio-desc">「ただの趣味」が、いつの間にか夢を叶える最強の武器になっていました。個展の開催、そしてメキシコへの挑戦。筆文字は、なりたかった自分を次々と連れてきてくれます。難しいことは抜きにして、筆一本であなたの日常をちょっと豊かに、そして面白くしてみませんか。</p>
+      </div>
+    </div>
   </section>
 
   <!-- Portfolio -->
   <section id="portfolio" class="container reveal">
-    <h2 style="text-align:center; margin-bottom:60px;" data-t="port-title">Portfolio</h2>
-    <div class="portfolio-grid">
-      <div class="portfolio-item"><img src="assets/works/work1.jpg" alt="Work 1"></div>
-      <div class="portfolio-item"><img src="assets/works/work2.jpg" alt="Work 2"></div>
-      <div class="portfolio-item"><img src="assets/works/work3.jpg" alt="Work 3"></div>
+    <div class="section-title">
+      <h2 data-t="port-title">Portfolio</h2>
+    </div>
+    <div class="port-grid">
+      <div class="port-item"><img src="assets/works/work1.jpg" alt="Nagisho Art - Nagi"></div>
+      <div class="port-item"><img src="assets/works/work2.jpg" alt="Nagisho Art - Sho Dragon"></div>
+      <div class="port-item"><img src="assets/works/work3.jpg" alt="Nagisho Art - Raijin Bulldog"></div>
+      <div class="port-item"><img src="assets/works/work4.jpg" alt="Nagisho Art - Calligraphy Work"></div>
     </div>
   </section>
 
-  <!-- Expo / Countdown (Step 3) -->
+  <!-- Expo / Countdown -->
   <section id="expo" class="container reveal">
     <div class="expo-card">
-      <h2 data-t="expo-title">Mexico Japan Expo 2026</h2>
-      <p data-t="expo-desc">2026年5月29〜30日、メキシコのレオンにて。世界へ筆文字を届けます。</p>
-      
-      <div class="countdown">
-        <div class="cd-item"><span class="cd-num" id="days">00</span><span class="cd-label">Days</span></div>
-        <div class="cd-item"><span class="cd-num" id="hours">00</span><span class="cd-label">Hours</span></div>
-        <div class="cd-item"><span class="cd-num" id="mins">00</span><span class="cd-label">Mins</span></div>
+      <div class="expo-content">
+        <h2 data-t="expo-title" style="font-family:var(--font-jp); font-size:2.5rem; margin-bottom:1.5rem;">Mexico Japan Expo 2026</h2>
+        <p data-t="expo-desc" style="max-width:600px; margin:0 auto; color:var(--color-text-sub);">2026年5月29〜30日、メキシコのレオンにて開催されるジャパンエキスポに出展します。世界へ筆文字を届ける挑戦を、ぜひ見届けてください。</p>
+        
+        <div class="countdown">
+          <div class="cd-item"><span class="cd-num" id="days">00</span><span class="cd-label">Days</span></div>
+          <div class="cd-item"><span class="cd-num" id="hours">00</span><span class="cd-label">Hours</span></div>
+          <div class="cd-item"><span class="cd-num" id="mins">00</span><span class="cd-label">Mins</span></div>
+        </div>
+        
+        <p data-t="expo-sub" style="font-weight:600; color:var(--color-nagi-teal); letter-spacing:1px;">SEE YOU IN MEXICO!</p>
       </div>
-      
-      <p style="opacity:0.6;" data-t="expo-sub">See you in Mexico!</p>
     </div>
   </section>
 
@@ -149,43 +230,47 @@
     <p>&copy; 2026 NagishoArts | Nagisho Lapist Emikos.</p>
   </footer>
 
+
   <script>
     /* ---------------------------------------------------------
        JS LOGIC (Step 1 & 3)
        --------------------------------------------------------- */
     const translations = {
       jp: {
-        "hero-catch": "半径３メートルを幸せにする筆文字",
-        "hero-sub": "心を凪に。夢を叶える、凪書の世界へ。",
+        "hero-catch": "書く、笑う、夢を叶える。半径３メートルを幸せにする筆文字",
+        "hero-sub": "心を凪に。飾らない自分のまま、世界と繋がる。凪書（なぎしょ）の世界へ。",
         "hero-btn": "作品を見る",
-        "about-title": "夢を叶えるツールとしての筆文字",
-        "about-desc": "「ただの趣味」が、夢を叶えるツールになった。個展の開催、海外遠征。筆文字のおかげで、なりたかった自分を次々と叶えてきました。心を凪にし、整えることで、あなたの半径３メートルから幸せを広げていきませんか。",
+        "cta-btn": "LINEで問い合わせ",
+        "bio-title": "凪書ラピスト Emikos",
+        "bio-desc": "「ただの趣味」が、いつの間にか夢を叶える最強の武器になっていました。個展の開催、そしてメキシコへの挑戦。筆文字は、なりたかった自分を次々と連れてきてくれます。難しいことは抜きにして、筆一本であなたの日常をちょっと豊かに、そして面白くしてみませんか。",
         "port-title": "作品ギャラリー",
         "expo-title": "Mexico Japan Expo 2026",
-        "expo-desc": "2026年5月29〜30日、メキシコのレオンにて開催されるジャパンエキスポに出展します。",
+        "expo-desc": "2026年5月29〜30日、メキシコのレオンにて開催されるジャパンエキスポに出展します。世界へ筆文字を届ける挑戦を、ぜひ見届けてください。",
         "expo-sub": "メキシコでお会いしましょう！"
       },
       en: {
         "hero-catch": "Calligraphy that makes 3 meters around you happy",
-        "hero-sub": "Calm your heart. Welcome to the Nagisho world where dreams come true.",
+        "hero-sub": "Calm your heart. Connect with the world as you are. Welcome to Nagisho.",
         "hero-btn": "View Works",
-        "about-title": "Calligraphy as a Dream-Fulfilling Tool",
-        "about-desc": "\"Just a hobby\" became a tool to fulfill my dreams. Exhibitions, overseas expeditions. Calligraphy helped me become who I wanted to be. Let's find peace and spread happiness together.",
+        "cta-btn": "Contact via LINE",
+        "bio-title": "Nagisho Lapist Emikos",
+        "bio-desc": "What started as a hobby accidentally became a powerful tool to fulfill my dreams. From solo exhibitions to the global stage in Mexico. Calligraphy brings out the best version of myself. Let’s make your daily life a bit richer and more fun through the brush.",
         "port-title": "Portfolio Gallery",
         "expo-title": "Mexico Japan Expo 2026",
-        "expo-desc": "Exhibiting at Japan Expo in Leon, Mexico, May 29-30, 2026.",
-        "expo-sub": "See you in Mexico!"
+        "expo-desc": "Exhibiting at Japan Expo in Leon, Mexico, May 29-30, 2026. Join me on this global challenge!",
+        "expo-sub": "SEE YOU IN MEXICO!"
       },
       es: {
         "hero-catch": "Caligrafía que hace feliz a 3 metros a tu alrededor",
-        "hero-sub": "Calma tu corazón. Bienvenido al mundo de Nagisho donde los sueños se cumplen.",
+        "hero-sub": "Calma tu corazón. Conéctate con el mundo tal como eres. Bienvenidos a Nagisho.",
         "hero-btn": "Ver Obras",
-        "about-title": "La caligrafía como herramienta para cumplir sueños",
-        "about-desc": "Lo que era solo un pasatiempo se convirtió en una herramienta para mis sueños. Gracias a la caligrafía, logré ser quien quería ser. Calma tu corazón y difunde la felicidad.",
+        "cta-btn": "Contacto por LINE",
+        "bio-title": "Nagisho Lapist Emikos",
+        "bio-desc": "Lo que era solo un pasatiempo se convirtió en una herramienta para mis sueños. Gracias a la caligrafía, logré ser quien quería ser. Calma tu corazón y difunde la felicidad. Hagamos que tu vida sea más rica con un pincel.",
         "port-title": "Portafolio",
         "expo-title": "Expo Japón México 2026",
-        "expo-desc": "Exhibiendo en la Japan Expo en León, México, 29-30 de mayo de 2026.",
-        "expo-sub": "¡Nos vemos en México!"
+        "expo-desc": "Exhibiendo en la Japan Expo en León, México, 29-30 de mayo de 2026. ¡Acompáñame!",
+        "expo-sub": "¡NOS VEMOS EN MÉXICO!"
       }
     };
 
