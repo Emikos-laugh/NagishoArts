@@ -58,12 +58,11 @@ body {
 }
 
 .profile-img-container {
-    width: 120px;
-    height: 120px;
+    width: 150px;
+    height: 150px;
     margin: 0 auto 20px;
     border-radius: 50%;
-    padding: 4px;
-    background: linear-gradient(135deg, var(--accent), transparent);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .profile-img {
@@ -71,7 +70,6 @@ body {
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
-    border: 2px solid var(--bg-color);
 }
 
 .profile-name {
