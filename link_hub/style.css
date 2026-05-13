@@ -1,5 +1,5 @@
 :root {
-    --bg-color: #0d0e15;
+    --bg-color: #051024;
     --text-primary: #ffffff;
     --text-secondary: rgba(255, 255, 255, 0.7);
     --glass-bg: rgba(255, 255, 255, 0.05);
@@ -34,8 +34,8 @@ body {
     width: 100vw;
     height: 100vh;
     z-index: -1;
-    background: radial-gradient(circle at 15% 50%, rgba(30, 20, 60, 0.4), transparent 50%),
-                radial-gradient(circle at 85% 30%, rgba(50, 40, 20, 0.4), transparent 50%);
+    background: radial-gradient(circle at 15% 50%, rgba(20, 80, 180, 0.5), transparent 50%),
+                radial-gradient(circle at 85% 30%, rgba(0, 160, 220, 0.4), transparent 50%);
     animation: pulse 15s infinite alternate;
 }
 
