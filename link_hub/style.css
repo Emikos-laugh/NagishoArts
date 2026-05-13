@@ -15,7 +15,7 @@
 }
 
 body {
-    font-family: 'Inter', 'Noto Serif JP', serif;
+    font-family: 'Inter', 'Zen Maru Gothic', sans-serif;
     background-color: var(--bg-color);
     color: var(--text-primary);
     min-height: 100vh;
