@@ -15,7 +15,7 @@
 }
 
 body {
-    font-family: 'Inter', 'Zen Maru Gothic', sans-serif;
+    font-family: 'Inter', 'Zen Maru Gothic', "Hiragino Maru Gothic ProN", "MotoyaLMaru", sans-serif;
     background-color: var(--bg-color);
     color: var(--text-primary);
     min-height: 100vh;
@@ -131,10 +131,12 @@ body {
 }
 
 .icon {
-    font-size: 1.5rem;
     margin-right: 16px;
     width: 24px;
-    text-align: center;
+    height: 24px;
+    flex-shrink: 0;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .link-text {
@@ -151,6 +153,7 @@ body {
 
 .link-card.highlight .icon {
     color: #00b900;
+    fill: #00b900;
 }
 
 .link-card.highlight:hover {
